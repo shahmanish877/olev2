@@ -30,8 +30,6 @@ class BookService extends Service
     {
         try
         {
-            $book_type = $request->;
-            $post->tags()->attach($tag_id);
             $book = Book::create($request->all());
             return ['success' => '1', 'book' => $book];
         }
