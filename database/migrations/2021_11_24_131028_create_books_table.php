@@ -21,12 +21,10 @@ class CreateBooksTable extends Migration
             $table->string('publication');
             $table->date('published_date');
             $table->unsignedBigInteger('class_level_id');
-            $table->unsignedBigInteger('book_type_id');
             $table->unsignedBigInteger('academic_id');
             $table->timestamps();
 
             $table->foreign('class_level_id')->references('id')->on('class_levels')->onDelete('cascade');
-            $table->foreign('book_type_id')->references('id')->on('book_types')->onDelete('cascade');
             $table->foreign('academic_id')->references('id')->on('academics')->onDelete('cascade');
 
         });
