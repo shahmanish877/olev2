@@ -18,9 +18,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('course_type',  CourseTypeController::class);
-Route::apiResource('course_level',  CourseLevelController::class);
-
 Route::middleware(['token_validation'])->group(function () {
     Route::apiResource('book_type',  \App\Http\Controllers\BookTypeController::class);
     Route::apiResource('academic', \App\Http\Controllers\AcademicController::class);
