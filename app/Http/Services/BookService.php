@@ -8,6 +8,7 @@ class BookService extends Service
 {
     public function __construct()
     {
+
     }
 
     public function getAll()
@@ -31,6 +32,10 @@ class BookService extends Service
         try
         {
             $book_type = $request->input('book_type_id');
+//            foreach ($book_type as $bt){
+//                echo $bt;
+//            }
+//            dd($bt);
             $book = Book::create($request->except('book_type_id'));
             $book->book_types()->attach($book_type);
             return ['success' => '1', 'book' => $book];
@@ -98,6 +103,7 @@ class BookService extends Service
 
         if($validator->fails())
         {
+            $response = array('response' => '', 'success'=>false);
             return array('code' => '0', 'message' => 'Operation Failed', 'errors' => $this->format_errors($validator->errors()));
         }
         else
@@ -105,5 +111,4 @@ class BookService extends Service
             return true;
         }
     }
-
 }

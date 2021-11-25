@@ -64,6 +64,8 @@ class Service
             $arx[] = ($e);
         }
 
-        return array('validation_error' => array(implode("<br/>", $arx)));
+        //return array('validation_error' => array(implode("<br/>", $arx)));
+        return (object) $arx;
+
     }
 }
