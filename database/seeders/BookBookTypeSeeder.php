@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\BookBookType;
 use App\Models\BookType;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class BookBookTypeSeeder extends Seeder
 {
@@ -21,7 +22,7 @@ class BookBookTypeSeeder extends Seeder
 
         foreach ($books as $book) {
             foreach ($book_types as $book_type) {
-                BookBookType::firstOrCreate([
+                DB::table('book_book_type')->insert([
                     'book_id' => $book->id,
                     'book_type_id' => $book_type->id,
                     'created_at' =>NOW(),
