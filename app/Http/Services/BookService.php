@@ -12,13 +12,13 @@ class BookService extends Service
 
     public function getAll()
     {
-        $all = Book::all();
+        $all = Book::info()->get();
         return $all;
     }
 
     public function single($id)
     {
-        $book = Book::where('id', $id)->first();
+        $book = Book::info()->find($id);
         if(is_null($book))
         {
             return ['error' => 'Record Not Found'];
@@ -44,6 +44,7 @@ class BookService extends Service
     public function update(Request $request, $id)
     {
         $book = $this->single($id);
+
         if(isset($book['error']))
         {
             return ['error' => $book['error']];
@@ -51,7 +52,9 @@ class BookService extends Service
 
         try
         {
-            $book->update($request->all());
+            $book_type = $request->input('book_type_id');
+            $book->update($request->except('book_type_id'));
+            $book->book_types()->sync($book_type);
             return ['success' => '1', 'book' => $book];
         }
         catch(Exception $e)

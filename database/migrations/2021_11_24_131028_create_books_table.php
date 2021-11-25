@@ -20,6 +20,8 @@ class CreateBooksTable extends Migration
             $table->string('isbn');
             $table->string('publication');
             $table->date('published_date');
+            $table->text('video_link');
+            $table->text('file');
             $table->unsignedBigInteger('class_level_id');
             $table->unsignedBigInteger('academic_id');
             $table->timestamps();

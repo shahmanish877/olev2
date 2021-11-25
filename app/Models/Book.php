@@ -13,4 +13,17 @@ class Book extends Model
     public function book_types(){
         return $this->belongsToMany(BookType::class);
     }
+
+    public function class_level(){
+        return $this->belongsTo(ClassLevel::class);
+    }
+
+    public function academic(){
+        return $this->belongsTo(Academic::class);
+    }
+
+    public function scopeInfo($query)
+    {
+        return $query->with('book_types', 'class_level', 'academic');
+    }
 }
