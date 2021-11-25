@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BookBookType extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     public $timestamps = false;
 
 }
