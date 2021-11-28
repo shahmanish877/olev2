@@ -31,7 +31,7 @@ class BookService extends Service
     {
         try
         {
-            dd($request->all());
+            //dd($request->all());
             $book_type = $request->input('book_type_id');
 //            foreach ($book_type as $bt){
 //                echo $bt;
