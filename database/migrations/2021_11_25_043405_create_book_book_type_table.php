@@ -18,7 +18,7 @@ class CreateBookBookTypeTable extends Migration
             $table->unsignedBigInteger('book_type_id');
             $table->unsignedBigInteger('book_id');
 
-            $table->timestamps();
+            //$table->timestamps();
 
             $table->foreign('book_type_id')->references('id')->on('book_types')->onDelete('cascade');
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');

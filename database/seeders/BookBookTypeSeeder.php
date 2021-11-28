@@ -25,8 +25,6 @@ class BookBookTypeSeeder extends Seeder
                 DB::table('book_book_type')->insert([
                     'book_id' => $book->id,
                     'book_type_id' => $book_type->id,
-                    'created_at' =>NOW(),
-                    'updated_at' =>NOW(),
                 ]);
             }
         }
