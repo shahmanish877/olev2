@@ -16,12 +16,12 @@ class TokenValidation
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->bearerToken() == null) {
-            //return ['error' => 'Token Not Found'];
-            return response()->json([
-                'error' => 'Token Not Found'
-            ]);
-        }
+//        if ($request->bearerToken() == null) {
+//            //return ['error' => 'Token Not Found'];
+//            return response()->json([
+//                'error' => 'Token Not Found'
+//            ]);
+//        }
         return $next($request);
     }
 }

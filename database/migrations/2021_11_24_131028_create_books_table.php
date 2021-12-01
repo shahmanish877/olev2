@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->string('publication');
             $table->date('published_date');
             $table->text('video_link')->nullable();
-            $table->text('file')->nullable();
+            $table->text('docs')->nullable();
             $table->unsignedBigInteger('class_level_id');
             $table->unsignedBigInteger('academic_id');
             $table->timestamps();

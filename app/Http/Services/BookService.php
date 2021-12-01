@@ -31,12 +31,7 @@ class BookService extends Service
     {
         try
         {
-            //dd($request->all());
             $book_type = $request->input('book_type_id');
-//            foreach ($book_type as $bt){
-//                echo $bt;
-//            }
-//            dd($bt);
             $book = Book::create($request->except('book_type_id'));
             $book->book_types()->attach($book_type);
             return ['success' => '1', 'book' => $book];
@@ -100,6 +95,8 @@ class BookService extends Service
             'class_level_id' => 'required',
             'book_type_id' => 'required',
             'academic_id' => 'required',
+            'video_link' => 'required_without:docs',
+            'docs' => 'required_without:video_link',
         ]);
 
         if($validator->fails())
