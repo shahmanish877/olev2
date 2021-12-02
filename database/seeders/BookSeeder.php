@@ -14,6 +14,7 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('books')->insert([
             'name' => 'Science',
             'author' => 'Albert',
@@ -23,6 +24,11 @@ class BookSeeder extends Seeder
             'class_level_id' => 1,
             'academic_id' => 1,
             'video_link' => '#',
+            'description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                            has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                            took a galley of type and scrambled it to make a type specimen book. It has survived not
+                            only five centuries, but also the leap into electronic typesetting, remaining essentially
+                             unchanged.",
             'created_at' =>NOW(),
             'updated_at' =>NOW(),
         ]);
@@ -36,6 +42,11 @@ class BookSeeder extends Seeder
             'class_level_id' => 2,
             'academic_id' => 2,
             'video_link' => '#',
+            'description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                            has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                            took a galley of type and scrambled it to make a type specimen book. It has survived not
+                            only five centuries, but also the leap into electronic typesetting, remaining essentially
+                             unchanged.",
             'created_at' =>NOW(),
             'updated_at' =>NOW(),
         ]);

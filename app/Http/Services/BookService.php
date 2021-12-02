@@ -31,8 +31,32 @@ class BookService extends Service
     {
         try
         {
+//            if($request->hasFile('thumbnail')) {
+//                $fileName = time().'_'.$request->file->getClientOriginalName();
+//                $filePath = $request->file('thumbnail')->storeAs('uploads', $fileName, 'public');
+//
+//                $fileModel->name = time().'_'.$request->file->getClientOriginalName();
+//                $fileModel->file_path = '/storage/' . $filePath;
+//            }
+            $thumbnail = 'thumbnail/default.png';
+
+            if($request->hasFile('thumbnail'))
+            {
+                $thumbnail = $this->uploadImage($request->file('thumbnail'), 'thumbnail', 0, 0, false, false);
+            }
+            if($request->hasFile('docs'))
+            {
+                $docs = $this->uploadImage($request->file('docs'), 'docs', 0, 0, false, false);
+            }
+
             $book_type = $request->input('book_type_id');
-            $book = Book::create($request->except('book_type_id'));
+            //$book = Book::create($request->except('book_type_id'));
+            $book = Book::create(
+                $request->except('book_type_id','thumbnail','docs')
+                + [
+                    '$thumbnail' => $thumbnail,
+                    'docs' => $docs,
+                ]);
             $book->book_types()->attach($book_type);
             return ['success' => '1', 'book' => $book];
         }
@@ -95,6 +119,7 @@ class BookService extends Service
             'class_level_id' => 'required',
             'book_type_id' => 'required',
             'academic_id' => 'required',
+            'description' => 'required',
             'video_link' => 'required_without:docs',
             'docs' => 'required_without:video_link',
         ]);
