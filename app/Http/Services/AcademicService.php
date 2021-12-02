@@ -3,6 +3,7 @@ namespace App\Http\Services;
 
 use Illuminate\Http\Request;
 use App\Models\Academic;
+use Illuminate\Support\Str;
 
 class AcademicService extends Service
 {
@@ -81,6 +82,8 @@ class AcademicService extends Service
     function validate(Request $request)
     {
         $input = $request->all();
+        $request->name = Str::lower($request->name);
+
         $validator = \Validator::make($input, [
             'name' => 'required|unique:academics',
         ]);

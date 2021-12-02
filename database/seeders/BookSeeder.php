@@ -22,6 +22,7 @@ class BookSeeder extends Seeder
             'publication' => 'Dharan Publication',
             'published_date' => '2021-11-02',
             'class_level_id' => 1,
+            'thumbnail' => 'thumbnail/default.png',
             'academic_id' => 1,
             'video_link' => '#',
             'description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
@@ -41,6 +42,7 @@ class BookSeeder extends Seeder
             'published_date' => '2015-11-02',
             'class_level_id' => 2,
             'academic_id' => 2,
+            'thumbnail' => 'thumbnail/default.png',
             'video_link' => '#',
             'description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
                             has been the industry's standard dummy text ever since the 1500s, when an unknown printer
