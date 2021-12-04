@@ -38,11 +38,12 @@ class BookService extends Service
 //                $fileModel->name = time().'_'.$request->file->getClientOriginalName();
 //                $fileModel->file_path = '/storage/' . $filePath;
 //            }
-            $thumbnail = 'thumbnail/default.png';
             $docs = '';
             if($request->hasFile('thumbnail'))
             {
                 $thumbnail = $this->uploadImage($request->file('thumbnail'), 'thumbnail', 0, 0, false, false);
+            }else{
+                $thumbnail = 'thumbnail/default.png';
             }
             if($request->hasFile('docs'))
             {
