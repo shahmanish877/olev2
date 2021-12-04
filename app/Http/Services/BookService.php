@@ -54,7 +54,7 @@ class BookService extends Service
             $book = Book::create(
                 $request->except('book_type_id','thumbnail','docs')
                 + [
-                    '$thumbnail' => $thumbnail,
+                    'thumbnail' => $thumbnail,
                     'docs' => $docs,
                 ]);
             $book->book_types()->attach($book_type);
