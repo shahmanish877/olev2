@@ -119,6 +119,7 @@ class BookService extends Service
             'published_date' => 'required|date',
             'class_level_id' => 'required',
             'book_type_id' => 'required',
+            'thumbnail' => 'required',
             'academic_id' => 'required',
             'description' => 'required',
             'video_link' => 'required_without:docs',
