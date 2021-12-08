@@ -3,6 +3,7 @@ namespace App\Http\Services;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use JD\Cloudder\Facades\Cloudder;
 
 class BookService extends Service
 {
@@ -11,10 +12,28 @@ class BookService extends Service
 
     }
 
-    public function getAll()
+    public function getAll(Request $request)
     {
-        $all = Book::info()->get();
+        $academic_query = $request->query('academic');
+        $class_query = $request->query('class');
+//        if($academic_query){
+//            //dd($academic_query);
+//            $all = Book::info()->where('academic_id','=',$academic_query)->get();
+//        }else if($class_query){
+//            //dd($academic_query);
+//            $all = Book::info()->where('class_id','=',$class_query)->get();
+//        }
+
+        $query = Book::info();
+        if($academic_query){
+            $query->where('academic_id','=',$academic_query);
+        }
+        if($class_query){
+            $query->where('class_level_id','=',$class_query);
+        }
+        $all = $query->get();
         return $all;
+
     }
 
     public function single($id)
@@ -39,17 +58,24 @@ class BookService extends Service
 //                $fileModel->file_path = '/storage/' . $filePath;
 //            }
             $docs = '';
+            $thumbnail = 'thumbnail/default.png';
+
             if($request->hasFile('thumbnail'))
             {
-                $thumbnail = $this->uploadImage($request->file('thumbnail'), 'thumbnail', 0, 0, false, false);
-            }else{
-                $thumbnail = 'thumbnail/default.png';
+                //$thumbnail = $this->uploadImage($request->file('thumbnail'), 'thumbnail', 0, 0, false, false);
+                $image_name = $request->file('thumbnail')->getRealPath();;
+                $cloudinary = Cloudder::upload($image_name, null, array("folder" => "olev2", "overwrite" => TRUE, "resource_type" => "image"));
+                $thumbnail = Cloudder::getPublicId();
+                dd($cloudinary);
             }
-            if($request->hasFile('docs'))
-            {
-                $docs = $this->uploadImage($request->file('docs'), 'docs', 0, 0, false, false);
-            }
+//            if($request->hasFile('docs'))
+//            {
+//                $docs = $this->uploadImage($request->file('docs'), 'docs', 0, 0, false, false);
+//            }
 
+
+            //dd($thumbnail);
+            //dd($docs);
             $book_type = $request->input('book_type_id');
             //$book = Book::create($request->except('book_type_id'));
             $book = Book::create(
@@ -119,7 +145,6 @@ class BookService extends Service
             'published_date' => 'required|date',
             'class_level_id' => 'required',
             'book_type_id' => 'required',
-            'thumbnail' => 'required',
             'academic_id' => 'required',
             'description' => 'required',
             'video_link' => 'required_without:docs',
