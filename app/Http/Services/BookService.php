@@ -65,8 +65,9 @@ class BookService extends Service
                 //$thumbnail = $this->uploadImage($request->file('thumbnail'), 'thumbnail', 0, 0, false, false);
                 $image_name = $request->file('thumbnail')->getRealPath();;
                 $cloudinary = Cloudder::upload($image_name, null, array("folder" => "olev2", "overwrite" => TRUE, "resource_type" => "image"));
-                $thumbnail = Cloudder::getPublicId();
-                dd($cloudinary);
+                //$public_id = Cloudder::getPublicId();
+                $result = Cloudder::getResult();
+                $thumbnail = $result['secure_url'];
             }
 //            if($request->hasFile('docs'))
 //            {
