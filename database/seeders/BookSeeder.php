@@ -22,7 +22,7 @@ class BookSeeder extends Seeder
             'publication' => 'Dharan Publication',
             'published_date' => '2021-11-02',
             'class_level_id' => 1,
-            'thumbnail' => 'thumbnail/default.png',
+            'thumbnail' => 'https://res.cloudinary.com/dl6qtnmbx/image/upload/v1639053241/olev2/default_xoqrkd.png',
             'academic_id' => 1,
             'video_link' => '#',
             'description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
