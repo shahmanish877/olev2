@@ -58,7 +58,7 @@ class BookService extends Service
 //                $fileModel->file_path = '/storage/' . $filePath;
 //            }
             $docs = '';
-            $thumbnail = 'thumbnail/default.png';
+            $thumbnail = 'https://res.cloudinary.com/dl6qtnmbx/image/upload/v1639053241/olev2/default_xoqrkd.png';
 
             if($request->hasFile('thumbnail'))
             {
