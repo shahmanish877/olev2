@@ -12,8 +12,24 @@ class ClassLevelService extends Service
 
     public function getAll()
     {
-        $all = ClassLevel::all();
+        $request = request();
+        $academic_query = $request->query('academic');
+
+        $primary = ['1', '2', '3', '4', '5'];
+        $secondary = ['6', '7', '8', '9', '10', '11', '12'];
+
+        $query = new ClassLevel();
+        if($academic_query && $academic_query == 1){
+            $query = $query::where('name', $primary);
+        }else if($academic_query && $academic_query == 2){
+            $query = $query::where('name', $secondary);
+        }else if($academic_query && $academic_query >= 3){
+            $query = $query::whereNotBetween('name', ['1','12']);
+        }
+
+        $all = $query->get();
         return $all;
+
     }
 
     public function single($id)
