@@ -16,6 +16,7 @@ class CreateClassLevelsTable extends Migration
         Schema::create('class_levels', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('academic_id')->nullable();
             $table->timestamps();
         });
     }

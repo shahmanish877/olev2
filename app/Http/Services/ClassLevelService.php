@@ -20,11 +20,11 @@ class ClassLevelService extends Service
 
         $query = new ClassLevel();
         if($academic_query && $academic_query == 1){
-            $query = $query::where('name', $primary);
+            $query = $query::where('academic_id', 1);
         }else if($academic_query && $academic_query == 2){
-            $query = $query::where('name', $secondary);
+            $query = $query::where('academic_id', 2);
         }else if($academic_query && $academic_query >= 3){
-            $query = $query::whereNotBetween('name', ['1','12']);
+            $query = $query::whereNull('academic_id');
         }
 
         $all = $query->get();
